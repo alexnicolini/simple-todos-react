@@ -23,6 +23,12 @@ App = React.createClass({
       <div className="container">
         <header>
           <h1>Todo List</h1>
+
+          {/* This is a comment in JSX code */}
+    
+          <form className="new-task" onSubmit={this.handleSubmit}>
+            <input type="text" ref="textInput" placeholder="Type do add new tasks" />
+          </form>
         </header>
 
         <ul>
