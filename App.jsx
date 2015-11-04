@@ -12,8 +12,15 @@ App = React.createClass({
 
   // Loads items from the Tasks collection and puts them on this.data.tasks
   getMeteorData() {
+    let query = {};
+
+    if (this.state.hideCompleted) {
+      // If hide completed is checked, filter tasks
+      query = { checked: { $ne: true } };
+    }
+
     return {
-      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch()
+      tasks: Tasks.find(query, { sort: { createdAt: -1 } }).fetch()
     }
   },
 
