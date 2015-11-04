@@ -4,7 +4,7 @@ App = React.createClass({
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
-  getInitialSate() {
+  getInitialState() { // Initialize field state
     return {
       hideCompleted: false
     }
@@ -39,6 +39,12 @@ App = React.createClass({
     React.findDOMNode(this.refs.textInput).value = '';
   },
 
+  toggleHideCompleted() { 
+    this.setState({ // Update the state property
+      hideCompleted: ! this.state.hideCompleted
+    });
+  },
+
   render() {
     return (
       <div className="container">
@@ -48,7 +54,7 @@ App = React.createClass({
           {/* This is a comment in JSX code */}
 
           <label className="hide-completed">
-            <input type="checkbox" readOnly={true} checked={this.state.hideCompleted} onClick={this.toogleHideCompleted} />
+            <input type="checkbox" readOnly={true} checked={this.state.hideCompleted} onClick={this.toggleHideCompleted} />
             Hide Completed Tasks
           </label>
     
