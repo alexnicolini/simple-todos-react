@@ -65,6 +65,8 @@ App = React.createClass({
             <input type="checkbox" readOnly={true} checked={this.state.hideCompleted} onClick={this.toggleHideCompleted} />
             Hide Completed Tasks
           </label>
+
+          <AccountsUIWrapper />
     
           <form className="new-task" onSubmit={this.handleSubmit}>
             <input type="text" ref="textInput" placeholder="Type do add new tasks" />
