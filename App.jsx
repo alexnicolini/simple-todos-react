@@ -57,7 +57,7 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Todo List</h1>
+          <h1>Todo List ({this.data.incompleteCount})</h1>
 
           {/* This is a comment in JSX code */}
 
