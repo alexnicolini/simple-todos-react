@@ -73,7 +73,7 @@ App = React.createClass({
 
           {this.data.currentUser ? 
             <form className="new-task" onSubmit={this.handleSubmit}>
-              <input type="text" ref="textInput" placeholder="Type do add new tasks" />
+              <input type="text" ref="textInput" placeholder="Type to add new tasks" />
             </form> : ''
           }
     
