@@ -50,6 +50,14 @@ Meteor.methods({
   },
 
   setPrivate(taskId, setToPrivate) {
-    const task = Tasks.findOne(taskId);
+    const task = Tasks.findOne(taskId); // Returns the data from a single document inside the collection
+
+
+    // Make sure only the task owner can make a task private
+    if (task.owner != Meteor.userId()) {
+      throw new Meteor.error("not-authorized"); // Launch an exception
+    }
+
+    Task.update(taskId, { $set: { private: setToPrivate } });
   }
 });
