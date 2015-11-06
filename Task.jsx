@@ -7,7 +7,7 @@ Task = React.createClass({
     showPrivateButton: React.PropTypes.bool.isRequired
   },
 
-  toogleChecked() {
+  toggleChecked() {
     // Set the checked property to the opposite of its current value
     Meteor.call('setChecked', this.props.task._id, ! this.props.task.checked);
   },
@@ -27,7 +27,13 @@ Task = React.createClass({
           &times;
         </button>
 
-        <input type="checkbox" readOnly={true} checked={this.props.task.checked} onClick={this.toogleChecked} />
+        <input type="checkbox" readOnly={true} checked={this.props.task.checked} onClick={this.toggleChecked} />
+
+        {this.props.showPrivateButton ? (
+          <button className="toggle-private" onClick={this.togglePrivate}>
+            {this.props.task.private ? 'Private' : 'Public'}
+          </button>
+        ) : ''}
 
         <span className="text">
           <strong>{this.props.task.username}</strong>: {this.props.task.text}
