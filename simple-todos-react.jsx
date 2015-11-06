@@ -22,7 +22,14 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   // This code is executed on the server only
   Meteor.publish('tasks', function () { // Define what data should be available to users
-    return Tasks.find();
+
+    // Only publish tasks that are public or belong to the current user
+    return Tasks.find({
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId }
+      ]
+    });
   });
 }
 
@@ -58,6 +65,6 @@ Meteor.methods({
       throw new Meteor.error("not-authorized"); // Launch an exception
     }
 
-    Task.update(taskId, { $set: { private: setToPrivate } });
+    Tasks.update(taskId, { $set: { private: setToPrivate } });
   }
 });
