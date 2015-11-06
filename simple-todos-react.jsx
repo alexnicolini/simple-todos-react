@@ -8,12 +8,21 @@ if (Meteor.isClient) {
     passwordSignupFields: 'USERNAME_ONLY'
   });
 
+  Meteor.subscribe('tasks'); // Retrieve the data that’s published from the server
+
   Meteor.startup( () => { // Use Meteor.startup to render the component after the page is ready
 
     // React.render takes two arguments
     // The first argument is the UI object
     // The second argument is the DOM object
     React.render(<App />, document.getElementById('render-target'));
+  });
+}
+
+if (Meteor.isServer) {
+  // This code is executed on the server only
+  Meteor.publish('tasks', function () { // Define what data should be available to users
+    return Tasks.find();
   });
 }
 
@@ -38,5 +47,9 @@ Meteor.methods({
 
   setChecked(taskId, setChecked) {
     Tasks.update(taskId, { $set: { checked: setChecked } });
+  },
+
+  setPrivate(taskId, setToPrivate) {
+    const task = Tasks.findOne(taskId);
   }
 });
