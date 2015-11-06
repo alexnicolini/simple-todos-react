@@ -3,7 +3,8 @@ Task = React.createClass({
   propTypes: {
     // This component gets the task to display through a React prop
     // We can use propTypes to indicate it is required
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
+    showPrivateButton: React.PropTypes.bool.isRequired
   },
 
   toogleChecked() {
